@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-
+import { config } from '../config';
 import { Products } from './Products';
 import '../App.css';
  
@@ -28,16 +28,15 @@ class Home extends Component {
   }
   
 
-
-  componentDidMount() {
+  refresh (){
     let query="";
     if(this.state.hash){
-        query="?category="+this.state.hash;
-        if(this.state.hash=="all"){
-          query="";
-        }
+      query="?category="+this.state.hash;
+      if(this.state.hash=="all"){
+        query="";
+      }
     }
-    axios.get(`http://localhost:3004/products/`+query)
+    axios.get(config.api_url+`/products/`+query)
       .then(function (response) {        
         this.setState({ 
           products :response.data
@@ -45,7 +44,11 @@ class Home extends Component {
       }.bind(this))
       .catch(function (error) {
         console.log(error);
-    });       
+    });  
+  }
+
+  componentDidMount() {
+    this.refresh();
   }
 
 

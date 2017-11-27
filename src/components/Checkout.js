@@ -27,8 +27,7 @@ export default class Checkout extends Component {
         store.dispatch( removeFromCart(product) );
         this.del_tr(e.target);        
     }
-
-
+    
     del_tr(remtr)  {   
         while((remtr.nodeName.toLowerCase())!='tr')
             remtr = remtr.parentNode;    

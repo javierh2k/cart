@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import store,{loadDataJson} from '../store';
 import { removeFromCart } from '../actions';
-import { connect } from 'react-redux';
 
 export class Menu extends Component {
 
@@ -15,9 +14,7 @@ export class Menu extends Component {
             this.state = {
                 cart:loadDataJson('cart')
             }
-        }
-
-        
+        }        
     
         store.subscribe( ()=>{
             this.setState({
@@ -95,20 +92,3 @@ export class Menu extends Component {
     }
 
 }
-
-/*const MapStateToProps =state => {
-    return {
-        cart: state.cart
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        removeFromCart(product){
-            dispatch(removeFromCart(product));
-        }
-    }
-}
-
- 
-export default connect(MapStateToProps,mapDispatchToProps )(Menu);*/

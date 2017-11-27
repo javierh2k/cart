@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Menu } from './components/Menu';
 import { Footer } from './components/Footer';
 import { Main } from './components/Main';
+import { config } from './config';
 
 import { Products } from './components/Products';
 import './App.css';
@@ -19,9 +20,8 @@ class App extends Component {
   
   componentDidMount() {   
     
-    axios.get(`http://localhost:3004/categorys/`)
+    axios.get(config.api_url+`/categorys/`)
     .then(function (response) { 
-      console.log(response);       
       this.setState({ 
         categorys :response.data
       });
@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
+    
     return (
       <div className="App">
         <Header items={this.state.categorys}></Header>

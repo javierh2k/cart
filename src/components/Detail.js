@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../App.css';
+import { config } from '../config';
+
+import store from '../store'
+import { addToCart } from '../actions';
  
+import '../App.css';
+
 
 class Detail extends Component {
 
   constructor(props) {
     super(props);
-    console.log( props );
     this.state = {
       product: [],
       id:this.props.match.params.id
     };       
-
+    
+    this.addToCart= this.addToCart.bind(this);
   }
   
 
+  addToCart(product){
+    store.dispatch( addToCart(product) );
+  }
+
   
   componentDidMount() {
-    axios.get(`http://localhost:3004/products/`+this.state.id)
+    axios.get(config.api_url+`/products/`+this.state.id)
       .then(function (response) {        
-          console.log(response);
         this.setState({ 
           product :response.data
         });
@@ -98,8 +106,8 @@ class Detail extends Component {
                                     </div>
                                     <div className="clearfix"> </div>
                                 </div>
-                                <div className="occasion-cart">
-                                    <a href="#" className="item_add hvr-outline-out button2">Add to cart</a>
+                                <div className="occasion-cart">                                    
+                                    <a className="item_add single-item hvr-outline-out button2" onClick={(e) => this.addToCart(product)}>Add to cart</a>
                                 </div>
                                 
                     </div>
