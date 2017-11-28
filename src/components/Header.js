@@ -16,6 +16,14 @@ export class Header extends Component {
         storeProduct.dispatch( refreshListFilter(products) )
     }
     
+    remove_hash_from_url(){
+        var uri = window.location.toString();
+        if (uri.indexOf("#") > 0) {
+            var clean_uri = uri.substring(0, uri.indexOf("#"));
+            window.history.replaceState({}, document.title, clean_uri);
+        }
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         let self=this;
@@ -33,16 +41,12 @@ export class Header extends Component {
 
         axios.get(config.api_url+`/products/?`+params.join("&") )
             .then(function (response) {        
-                /*this.setState({
-                    products:response.data
-                });*/
-                self.refreshListFilter(response.data);
-                console.log("RESP_:",response.data);                
+                self.refreshListFilter(response.data);                
             })
             .catch(function (error) {
                 console.log(error);
             });
-                
+            this.remove_hash_from_url();
     }
 
 
