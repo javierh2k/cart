@@ -30,14 +30,11 @@ export class Menu extends Component {
 
     
     render() {
-        
         let total=0,counter=0;
         if(this.state.cart){
-            total=this.state.cart.reduce( (sum,product)=> sum+ parseFloat(product.price),0 );
-            counter=this.state.cart.length; //reduce( (product)=> count++ );
+            total=this.state.cart.reduce( (sum,product)=> sum+ parseFloat(product.price),0 ).toFixed(2);
+            counter=this.state.cart.length;
         }
-        //console.log("render",this.state );
-
         return(
             <div className="ban-top">
             <div className="container">
@@ -57,13 +54,9 @@ export class Menu extends Component {
                         <div className="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                           <ul className="nav navbar-nav menu__list">
                             <li className=" menu__item"><a className="menu__link" href="/#all"> All </a></li>
-                            {this.props.items.map(u => {
-                                        let ref="/#"+u;
-                                        return (
-                                            <li className=" menu__item"><a className="menu__link" href={ref}>{u}</a></li>
-                                        );
-                            })}					
-                            
+                            {this.props.items.map(u =>                             
+                                <li className=" menu__item"><a className="menu__link" href={`/#`+u}>{u}</a></li>                            
+                            )}
                           </ul>
                         </div>
                       </div>
