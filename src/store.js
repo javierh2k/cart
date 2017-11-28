@@ -17,6 +17,7 @@ export function loadDataJson(id) {
 const reducer= (state,action) => {
 
     if(action.type==="ADD_TO_CART"){
+        console.log("entro add to cart");
         state.cart=[];
         if( loadDataJson('cart') ){
             let json=loadDataJson('cart');
@@ -42,8 +43,13 @@ const reducer= (state,action) => {
         }
     }
 
+
     return state;
 }
+
+    
+    
+
 
 
 export default createStore(reducer,{ cart: [] });

@@ -4,24 +4,24 @@ import { browserHistory } from 'react-router';
 import { config } from '../config';
 import { Products } from './Products';
 import '../App.css';
- 
+import storeProduct from '../storeProduct'; 
+
 class Home extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       products: [],
       hash:this.props.location.hash.replace("#","")
     };       
-    
-    //this.search = this.search.bind(this);  
-
+        
     this.props.history.listen((location, action) => {
         let anchorName = this.props.location.hash;
         if (anchorName) {
             anchorName = anchorName.replace("#","");
             this.state={hash:anchorName};
-            this.componentDidMount();
+            this.refresh();
         }
     });
 
@@ -49,13 +49,22 @@ class Home extends Component {
 
   componentDidMount() {
     this.refresh();
+
+    storeProduct.subscribe( ()=>{
+      this.setState({
+          products:storeProduct.getState().products
+      });
+    }); 
+    //storeProduct.subscribe( this.forceUpdate.bind(this) );
+
   }
 
 
   render() {
+  
     return (
       <div>
-        <Products items={this.state.products}></Products>
+        <Products products={this.state.products}></Products>
       </div>
     );
   }

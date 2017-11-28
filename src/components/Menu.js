@@ -22,7 +22,6 @@ export class Menu extends Component {
             });
         }); 
         
-        
     }
 
     
@@ -32,7 +31,7 @@ export class Menu extends Component {
     
     render() {
         
-        let total=0,counter=2;
+        let total=0,counter=0;
         if(this.state.cart){
             total=this.state.cart.reduce( (sum,product)=> sum+ parseFloat(product.price),0 );
             counter=this.state.cart.length; //reduce( (product)=> count++ );

@@ -1,4 +1,4 @@
-const addToCart = product => {    
+const addToCart = product => {   
     return {
         type:'ADD_TO_CART',
         product
@@ -12,5 +12,13 @@ const removeFromCart = product => {
     }
 }
 
+const refreshListFilter = products => {
+    return {
+        type:'REFRESH_LIST_FILTER',
+        products
+    }
+}
 
-export { addToCart, removeFromCart };
+
+
+export { addToCart, removeFromCart ,refreshListFilter };

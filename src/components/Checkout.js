@@ -41,7 +41,7 @@ export default class Checkout extends Component {
             total=this.state.cart.reduce( (sum,product)=> sum+ parseFloat(product.price),0 );
             counter=this.state.cart.length; //reduce( (product)=> count++ );
         }
-
+        
         return(
             <div>
                 <div className="page-head">
@@ -75,8 +75,8 @@ export default class Checkout extends Component {
                                         
                                         </td>
                                         <td className="invert-image">
-                                        <Link to={`/detail/$(product.img)`}>                                        
-                                            <img src="images/w4.png" alt=" " className="img-responsive" />
+                                        <Link to={`/detail/`+product.id}>
+                                            <img src={`../images/`+product.img} alt=" " className="img-responsive" />
                                         </Link>
                                         </td>
                                         
@@ -92,7 +92,7 @@ export default class Checkout extends Component {
                                         <td className="invert">Hand Bag</td>
                                         <td className="invert">{product.price}</td>
                                     </tr>                                    
-                                )}
+                                  )}
                                     
                                     
                             </table>

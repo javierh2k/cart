@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+
 import { Item } from './Item';
+//import store from '../store'; 
 
 export class Products extends Component {
+    
+    
 
     render() {
         //console.log( this.props );
@@ -11,8 +15,7 @@ export class Products extends Component {
                             <div className="resp-tabs-containerx">
                                 <div className="tab-1 resp-tab-contentx" aria-labelledby="tab_item-0">
                                    
-                                    {this.props.items.map(u => {
-                                        //console.log( u );
+                                    {this.props.products.map(u => {
                                         return (
                                             <Item product={u} />
                                         );
